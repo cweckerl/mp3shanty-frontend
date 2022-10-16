@@ -1,0 +1,13 @@
+table,
+th,
+td {
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(245, 245, 245);
+}
+
+body {
+  font-family: system-ui;
+}
