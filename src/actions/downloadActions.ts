@@ -1,25 +1,26 @@
-import { Dispatch } from 'react'
-import { AWSConversionService, ConversionService } from '../services/conversionService'
+import { ConversionService } from '../services/conversionService'
+import { AWSConversionService } from '../services/AWSConversionService'
+import { ConversionResult } from '../models/conversionResults'
 
 export class DownloadActions {
   constructor(
-    public readonly setDownloading: Dispatch<boolean>,
-    public readonly conversionService: ConversionService = new AWSConversionService(),
+    public readonly conversionService: ConversionService = new AWSConversionService()
   ) { }
 
-  download = async (videoId: string, filename: string) => {
+  download = async (videoId: string, filename: string): Promise<ConversionResult> => {
     try {
-      this.setDownloading(true)
-      const result = await this.conversionService.convert(videoId, filename)
-      const a = document.createElement('a')
-      a.href = result.url
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      this.setDownloading(false)
+      return this.conversionService.convert(videoId, filename)
     } catch (error) {
       console.log(error)
-      this.setDownloading(false)
+      throw error
     }
+  }
+
+  click = (url: string) => {
+    const a = document.createElement('a')
+    a.href = url
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
   }
 }

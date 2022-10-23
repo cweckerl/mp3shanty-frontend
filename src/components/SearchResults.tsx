@@ -1,12 +1,14 @@
 import React from 'react'
+import { DownloadActions } from '../actions/downloadActions'
 import { SearchResult } from '../models/searchResults'
 
 export interface SearchResultsProps {
   readonly searchResults: SearchResult[]
-  download(videoId: string, fileName: string): void
 }
 
 export const SearchResults = (props: SearchResultsProps) => {
+  const downloadActions = new DownloadActions()
+
   return (
     <table>
       <tbody>
@@ -23,7 +25,11 @@ export const SearchResults = (props: SearchResultsProps) => {
               <td>{val.channelTitle}</td>
               <td>{new Date(val.publishDate).toDateString()}</td>
               <td>
-                <button onClick={() => props.download(val.videoId, val.title)}>
+                <button
+                  value={val.videoId}
+                  onClick={() => downloadActions.download(val.videoId, val.title)
+                    .then(result => downloadActions.click(result.url))}
+                >
                   Download
                 </button>
               </td>

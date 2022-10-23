@@ -1,21 +1,19 @@
-import { Dispatch } from 'react'
 import { SearchResult } from '../models/searchResults'
-import { YouTubeSearchService, SearchService } from '../services/searchService'
+import { SearchService } from '../services/searchService'
+import { YouTubeSearchService } from '../services/YouTubeSearchService'
 
 export class SearchActions {
   constructor(
-    public readonly setSearchResults: Dispatch<SearchResult[]>,
     public readonly searchService: SearchService = new YouTubeSearchService()
   ) { }
 
-  search = async (query: string) => {
-    if (query === '') return
+  search = async (query: string): Promise<SearchResult[]> => {
+    if (query === '') return []
     try {
-      const results = await this.searchService.search(query)
-      this.setSearchResults(results)
+      return this.searchService.search(query)
     } catch (error) {
       console.log(error)
-      this.setSearchResults([])
+      return []
     }
   }
 }
