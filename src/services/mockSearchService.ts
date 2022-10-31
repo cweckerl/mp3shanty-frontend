@@ -2,15 +2,27 @@ import { SearchResult } from '../models/searchResults'
 import { SearchService } from './searchService'
 
 export class MockSearchService implements SearchService {
-  async search(query: string): Promise<SearchResult[]> {
+  async search(query: string, type: string): Promise<SearchResult[]> {
     return new Promise((resolve, reject) => {
       const result: SearchResult[] = [{
-        videoId: '0',
+        id: '0',
         title: 'foo',
         channelTitle: 'channelFoo',
         publishDate: '2022-10-10T10:18:26.785085'
       }]
       resolve(result)
+    })
+  }
+
+  async listVideo(id: string): Promise<[string, string]> {
+    return new Promise((resolve, reject) => {
+      resolve(['5000', 'PT1M'])
+    })
+  }
+
+  async listPlaylist(id: string): Promise<number> {
+    return new Promise((resolve, reject) => {
+      resolve(10)
     })
   }
 }

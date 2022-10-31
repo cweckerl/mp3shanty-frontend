@@ -9,6 +9,6 @@ describe('DownloadActions', () => {
     const filename = 'testname'
 
     downloadActions.download(query, filename).then(result =>
-      expect('https://id-testname.com' == result.url))
+      expect('https://id-testname.com').toEqual(result.url))
   })
 })

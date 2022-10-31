@@ -1,5 +1,5 @@
 import { ConversionService } from '../services/conversionService'
-import { AWSConversionService } from '../services/AWSConversionService'
+import { AWSConversionService } from '../services/awsConversionService'
 import { ConversionResult } from '../models/conversionResults'
 
 export class DownloadActions {
