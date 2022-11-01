@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/mp3shanty-frontend/static/css/main.940ccd1a.css",
+    "main.js": "/mp3shanty-frontend/static/js/main.32f715f7.js",
+    "index.html": "/mp3shanty-frontend/index.html",
+    "main.940ccd1a.css.map": "/mp3shanty-frontend/static/css/main.940ccd1a.css.map",
+    "main.32f715f7.js.map": "/mp3shanty-frontend/static/js/main.32f715f7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.940ccd1a.css",
+    "static/js/main.32f715f7.js"
+  ]
+}
