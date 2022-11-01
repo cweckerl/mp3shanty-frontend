@@ -11,7 +11,12 @@ tbody tr:nth-child(even) {
 
 td {
   word-wrap: break-word;
-  max-width: 10em;
+  max-width: 8em;
+}
+
+a:link,
+a:visited {
+  color: rgb(235, 235, 235);
 }
 
 p {

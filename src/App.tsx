@@ -22,7 +22,8 @@ export default function App() {
         Search
       </button>
       {videoResults.length > 0 ? <SearchResults videoResults={videoResults} /> : null}
-      <h6>Not for commerial use. Downloading copyrighted work is prohibited.</h6>
+      <h6><a href="https://github.com/cweckerl/mp3shanty-frontend/blob/master/README.md">How do I use this?</a></h6>
+      <h6>Not for commercial use. Downloading copyrighted work is prohibited.</h6>
     </div>
   )
 }

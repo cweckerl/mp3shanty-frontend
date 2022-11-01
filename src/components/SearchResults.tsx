@@ -32,7 +32,7 @@ export const SearchResults = (props: SearchResultsProps) => {
                   <tr key={val.id}>
                     <td>{decode(val.title)}</td>
                     <td>
-                      <p><i>{decode(val.channelTitle)}</i></p>
+                      <p>{decode(val.channelTitle)}</p>
                       <p>{Number(val.viewCount).toLocaleString()}</p>
                       <p>{new Date(val.publishDate).toLocaleDateString()}</p>
                     </td>
@@ -45,7 +45,7 @@ export const SearchResults = (props: SearchResultsProps) => {
                             .then(result => downloadActions.click(result.url))
                           setDownloading(false)
                         }}
-                      >⭳</button>
+                      >DL</button>
                     </td>
                   </tr>
                 ))
