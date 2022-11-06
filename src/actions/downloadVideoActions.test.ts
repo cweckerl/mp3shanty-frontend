@@ -1,7 +1,7 @@
 import { MockConversionService } from '../services/mockConversionService'
-import { DownloadActions } from './downloadActions'
+import { DownloadActions } from './downloadVideoActions'
 
-describe('DownloadActions', () => {
+describe('DownloadVideoActions', () => {
   const downloadActions = new DownloadActions(new MockConversionService())
 
   it('should return download url', () => {
@@ -9,6 +9,6 @@ describe('DownloadActions', () => {
     const filename = 'testname'
 
     downloadActions.download(query, filename).then(result =>
-      expect('https://id-testname.com').toEqual(result.url))
+      expect(result.url).toEqual('https://id-testname.com'))
   })
 })

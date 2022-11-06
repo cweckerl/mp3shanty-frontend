@@ -14,6 +14,11 @@ export interface Playlist extends SearchResult {
   readonly itemCount: number
 }
 
+export interface PlaylistItem {
+  readonly videoId: string
+  readonly title: string
+}
+
 export enum SearchType {
   Channel = 'channel',
   Playlist = 'playlist',

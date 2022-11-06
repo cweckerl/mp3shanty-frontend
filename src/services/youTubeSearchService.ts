@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { SearchResult, SearchType } from '../models/searchResults'
+import { decode } from '../actions/util'
+import { PlaylistItem, SearchResult, SearchType } from '../models/searchResults'
 import { SearchService } from './searchService'
 
 export class YouTubeSearchService implements SearchService {
@@ -10,8 +11,8 @@ export class YouTubeSearchService implements SearchService {
         .then(res => resolve(res.data.items.map((item: any) => {
           return {
             id: type === SearchType.Video ? item.id.videoId : item.id.playlistId,
-            title: item.snippet.title,
-            channelTitle: item.snippet.channelTitle,
+            title: decode(item.snippet.title),
+            channelTitle: decode(item.snippet.channelTitle),
             publishDate: item.snippet.publishedAt,
           }
         })))
@@ -19,10 +20,10 @@ export class YouTubeSearchService implements SearchService {
     })
   }
 
-  async listVideo(id: string): Promise<[string, string]> {
+  async listVideo(videoId: string): Promise<[string, string]> {
     return new Promise((resolve, reject) => {
       const key = process.env.REACT_APP_YOUTUBE_SEARCH_KEY
-      axios.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${id}&key=${key}`)
+      axios.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoId}&key=${key}`)
         .then(res => {
           const item = res.data.items[0]
           resolve([item.statistics.viewCount, item.contentDetails.duration])
@@ -31,14 +32,25 @@ export class YouTubeSearchService implements SearchService {
     })
   }
 
-  async listPlaylist(id: string): Promise<number> {
+  async listPlaylist(playlistId: string): Promise<number> {
     return new Promise((resolve, reject) => {
       const key = process.env.REACT_APP_YOUTUBE_SEARCH_KEY
-      axios.get(`https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=${id}&key=${key}`)
+      axios.get(`https://www.googleapis.com/youtube/v3/playlists?part=contentDetails&id=${playlistId}&key=${key}`)
         .then(res => {
           const item = res.data.items[0]
           resolve(item.contentDetails.itemCount)
         })
+        .catch(err => reject(err))
+    })
+  }
+
+  async listPlaylistItems(playlistId: string): Promise<PlaylistItem[]> {
+    return new Promise((resolve, reject) => {
+      const key = process.env.REACT_APP_YOUTUBE_SEARCH_KEY
+      axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=30&key=${key}`)
+        .then(res => resolve(res.data.items.map((item: any) => {
+          return { videoId: item.snippet.resourceId.videoId, title: decode(item.snippet.title) }
+        })))
         .catch(err => reject(err))
     })
   }

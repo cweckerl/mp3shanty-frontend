@@ -1,4 +1,4 @@
-import { SearchResult } from '../models/searchResults'
+import { PlaylistItem, SearchResult } from '../models/searchResults'
 import { SearchService } from './searchService'
 
 export class MockSearchService implements SearchService {
@@ -23,6 +23,15 @@ export class MockSearchService implements SearchService {
   async listPlaylist(id: string): Promise<number> {
     return new Promise((resolve, reject) => {
       resolve(10)
+    })
+  }
+
+  listPlaylistItems(playlistId: string): Promise<PlaylistItem[]> {
+    return new Promise((resolve, reject) => {
+      const result: PlaylistItem[] = [{
+        videoId: '0', title: 'foo'
+      }]
+      resolve(result)
     })
   }
 }

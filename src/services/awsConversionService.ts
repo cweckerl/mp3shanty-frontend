@@ -10,8 +10,8 @@ export class AWSConversionService implements ConversionService {
       axios.get(
         `https://${id}.execute-api.${region}.amazonaws.com/prod/conversion?video_id=${videoId}&filename=${filename}`
       )
-        .then(res => { resolve(res.data) })
-        .catch(err => { reject(err) })
+        .then(res => resolve(res.data))
+        .catch(err => reject(err))
     })
   }
 }

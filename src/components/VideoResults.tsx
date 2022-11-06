@@ -1,24 +1,19 @@
 import React, { useState } from 'react'
-import { DownloadActions } from '../actions/downloadActions'
+import { DownloadActions } from '../actions/downloadVideoActions'
 import { Video } from '../models/searchResults'
 
-export interface SearchResultsProps {
+export interface VideoResultsProps {
   readonly videoResults: Video[]
 }
 
-export const SearchResults = (props: SearchResultsProps) => {
+export const VideoResults = (props: VideoResultsProps) => {
   const downloadActions = new DownloadActions()
   const [downloading, setDownloading] = useState(false)
-
-  const decode = (input: string): string => {
-    const text = document.createElement("textarea")
-    text.innerHTML = input
-    return text.value
-  }
+  const [error, setError] = useState(false)
 
   return (
     <div>
-      {!downloading ?
+      {!downloading && !error ?
         <div>
           <table>
             <tbody>
@@ -30,9 +25,9 @@ export const SearchResults = (props: SearchResultsProps) => {
               {
                 props.videoResults.map((val) => (
                   <tr key={val.id}>
-                    <td>{decode(val.title)}</td>
+                    <td>{val.title}</td>
                     <td>
-                      <p>{decode(val.channelTitle)}</p>
+                      <p>{val.channelTitle}</p>
                       <p>{Number(val.viewCount).toLocaleString()}</p>
                       <p>{new Date(val.publishDate).toLocaleDateString()}</p>
                     </td>
@@ -43,6 +38,7 @@ export const SearchResults = (props: SearchResultsProps) => {
                           setDownloading(true)
                           await downloadActions.download(val.id, val.title)
                             .then(result => downloadActions.click(result.url))
+                            .catch(() => setError(true))
                           setDownloading(false)
                         }}
                       >DL</button>
@@ -53,7 +49,7 @@ export const SearchResults = (props: SearchResultsProps) => {
             </tbody>
           </table>
           <h6><sup>1</sup>Lists channel title, view count, and publish date respectively.</h6>
-        </div> : <h3>Downloading...</h3>}
-    </div >
+        </div> : downloading && !error ? <h3>Downloading...</h3> : <h3>An error occurred. Please refresh and retry.</h3>}
+    </div>
   )
 }
