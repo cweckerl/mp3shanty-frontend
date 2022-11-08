@@ -1,5 +1,5 @@
 import { ConversionResult } from '../models/conversionResults'
 
 export interface ConversionService {
-  convert(videoId: string, filename: string): Promise<ConversionResult>
+  convert(videoId: string, title: string, channel: string): Promise<ConversionResult>
 }

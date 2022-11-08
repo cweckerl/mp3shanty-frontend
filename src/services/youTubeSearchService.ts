@@ -49,7 +49,11 @@ export class YouTubeSearchService implements SearchService {
       const key = process.env.REACT_APP_YOUTUBE_SEARCH_KEY
       axios.get(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=30&key=${key}`)
         .then(res => resolve(res.data.items.map((item: any) => {
-          return { videoId: item.snippet.resourceId.videoId, title: decode(item.snippet.title) }
+          return {
+            videoId: item.snippet.resourceId.videoId,
+            title: decode(item.snippet.title),
+            channelTitle: decode(item.snippet.channelTitle)
+          }
         })))
         .catch(err => reject(err))
     })

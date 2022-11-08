@@ -29,7 +29,7 @@ export class MockSearchService implements SearchService {
   listPlaylistItems(playlistId: string): Promise<PlaylistItem[]> {
     return new Promise((resolve, reject) => {
       const result: PlaylistItem[] = [{
-        videoId: '0', title: 'foo'
+        videoId: '0', title: 'foo', channelTitle: 'channelFoo'
       }]
       resolve(result)
     })

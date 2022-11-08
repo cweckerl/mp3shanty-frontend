@@ -7,9 +7,9 @@ export class DownloadActions {
     public readonly conversionService: ConversionService = new AWSConversionService()
   ) { }
 
-  download = async (videoId: string, filename: string): Promise<ConversionResult> => {
+  download = async (videoId: string, title: string, channel: string): Promise<ConversionResult> => {
     try {
-      return this.conversionService.convert(videoId, filename)
+      return this.conversionService.convert(videoId, title, channel)
     } catch (error) {
       console.log(error)
       throw error

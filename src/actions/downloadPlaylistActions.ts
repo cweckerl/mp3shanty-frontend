@@ -18,7 +18,7 @@ export class DownloadPlaylistActions {
       const zip = new JSZip()
 
       for (const item of playlistItems) {
-        const result = await this.conversionService.convert(item.videoId, item.title)
+        const result = await this.conversionService.convert(item.videoId, item.title, item.channelTitle)
         const blob = await this.proxy.zip(result.url)
         zip.file(`${item.title}.mp3`, blob)
       }

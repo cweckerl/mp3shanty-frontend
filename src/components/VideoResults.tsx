@@ -36,7 +36,7 @@ export const VideoResults = (props: VideoResultsProps) => {
                         value={val.id}
                         onClick={async () => {
                           setDownloading(true)
-                          await downloadActions.download(val.id, val.title)
+                          await downloadActions.download(val.id, val.title, val.channelTitle)
                             .then(result => downloadActions.click(result.url))
                             .catch(() => setError(true))
                           setDownloading(false)
