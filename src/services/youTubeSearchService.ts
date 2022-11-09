@@ -14,6 +14,7 @@ export class YouTubeSearchService implements SearchService {
             title: decode(item.snippet.title),
             channelTitle: decode(item.snippet.channelTitle),
             publishDate: item.snippet.publishedAt,
+            thumbnail: item.snippet.thumbnails.medium.url
           }
         })))
         .catch(err => reject(err))

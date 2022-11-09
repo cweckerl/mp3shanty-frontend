@@ -3,6 +3,7 @@ export interface SearchResult {
   readonly title: string
   readonly channelTitle: string
   readonly publishDate: string
+  readonly thumbnail: string
 }
 
 export interface Video extends SearchResult {

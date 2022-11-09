@@ -8,7 +8,8 @@ export class MockSearchService implements SearchService {
         id: '0',
         title: 'foo',
         channelTitle: 'channelFoo',
-        publishDate: '2022-10-10T10:18:26.785085'
+        publishDate: '2022-10-10T10:18:26.785085',
+        thumbnail: 'foo.jpg'
       }]
       resolve(result)
     })

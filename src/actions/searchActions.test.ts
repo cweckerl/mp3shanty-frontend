@@ -16,6 +16,7 @@ describe('search', () => {
       expect(result[0].title).toEqual('foo')
       expect(result[0].channelTitle).toEqual('channelFoo')
       expect(result[0].publishDate).toEqual('2022-10-10T10:18:26.785085')
+      expect(result[0].thumbnail).toEqual('foo.jpg')
     })
   })
 

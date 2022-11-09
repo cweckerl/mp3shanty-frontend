@@ -1,17 +1,14 @@
 table {
   margin-top: 1em;
-  margin-bottom: 1em;
   margin-left: auto;
   margin-right: auto;
-}
-
-tbody tr:nth-child(even) {
-  background-color: rgb(40, 40, 40);
+  border-spacing: 10px;
 }
 
 td {
+  text-align: left;
   word-wrap: break-word;
-  max-width: 8em;
+  max-width: 185px;
 }
 
 a:link,
@@ -24,10 +21,6 @@ p {
   margin-top: 0%;
 }
 
-sup {
-  font-size: xx-small;
-}
-
 html {
   text-align: center;
   font-family: system-ui;
@@ -37,4 +30,8 @@ html {
 
 button {
   cursor: pointer;
+}
+
+img {
+  border-radius: 8px;
 }

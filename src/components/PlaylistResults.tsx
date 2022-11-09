@@ -17,22 +17,18 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
         <div>
           <table>
             <tbody>
-              <tr>
-                <th>Title</th>
-                <th>Metadata<sup>1</sup></th>
-                <th>Action</th>
-              </tr>
               {
                 props.playlistResults.map((val) => (
                   <tr key={val.id}>
-                    <td>{val.title}</td>
                     <td>
-                      <p>{val.channelTitle}</p>
-                      <p>Videos: {Number(val.itemCount).toLocaleString()}</p>
-                      <p>{new Date(val.publishDate).toLocaleDateString()}</p>
-                    </td>
-                    <td>
+                      <img
+                        src={val.thumbnail}
+                        width='112'
+                        height='63'
+                        alt='thumbnail'
+                      />
                       <button
+                        style={{ margin: 'auto', display: 'block' }}
                         value={val.id}
                         onClick={async () => {
                           setDownloading(true)
@@ -43,12 +39,17 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
                         }}
                       >DL</button>
                     </td>
+                    <td>
+                      <b>{val.title}</b>
+                      <p>{val.channelTitle}</p>
+                      <p>{Number(val.itemCount).toLocaleString()} • {new Date(val.publishDate).toLocaleDateString()}</p>
+                    </td>
                   </tr>
                 ))
               }
             </tbody>
           </table>
-          <h6><sup>1</sup>Lists channel channel title and video count.</h6>
+          <h6>Lists title, channel title, and video count • publish date.</h6>
         </div> : downloading && !error ? <h3>Downloading...</h3> : <h3>An error occurred. Please refresh and retry.</h3>}
     </div>
   )
