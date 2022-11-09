@@ -21,6 +21,7 @@ export default function App() {
           type='text'
           value={query}
           onChange={e => setQuery(e.target.value)}
+          autoCorrect='off'
         />
         <button onClick={() => {
           if (searchType === SearchType.Video) {
