@@ -12,6 +12,14 @@ export default function App() {
   const [playlistResults, setPlaylistResults] = useState<Playlist[]>([])
   const searchActions = new SearchActions()
 
+  const search = () => {
+    if (searchType === SearchType.Video) {
+      searchActions.searchVideo(query).then(res => setVideoResults(res))
+    } else if (searchType === SearchType.Playlist) {
+      searchActions.searchPlaylists(query).then(res => setPlaylistResults(res))
+    }
+  }
+
   return (
     <div>
       <title>mp3shanty</title>
@@ -22,14 +30,12 @@ export default function App() {
           value={query}
           onChange={e => setQuery(e.target.value)}
           autoCorrect='off'
+          onKeyDown={e => {
+            if (e.key === 'Enter') search()
+          }}
         />
-        <button onClick={() => {
-          if (searchType === SearchType.Video) {
-            searchActions.searchVideo(query).then(res => setVideoResults(res))
-          } else if (searchType === SearchType.Playlist) {
-            searchActions.searchPlaylists(query).then(res => setPlaylistResults(res))
-          }
-        }}>Search</button><br />
+        <button onClick={search}>Search</button>
+        <br />
         <input
           type='radio'
           name='filter'
@@ -54,8 +60,8 @@ export default function App() {
       }
       <h6>
         <a
-          target='blank'
-          rel='noreferrer noopener'
+          target='_blank'
+          rel='noopener noreferrer'
           href="https://github.com/cweckerl/mp3shanty-frontend/blob/master/README.md"
         >How do I use this?</a>
       </h6>
