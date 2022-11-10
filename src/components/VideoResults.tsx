@@ -1,19 +1,20 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { DownloadActions } from '../actions/downloadVideoActions'
 import { Video } from '../models/searchResults'
 
 export interface VideoResultsProps {
   readonly videoResults: Video[]
+  readonly error: boolean
+  readonly setError: Dispatch<SetStateAction<boolean>>
 }
 
 export const VideoResults = (props: VideoResultsProps) => {
   const downloadActions = new DownloadActions()
   const [downloading, setDownloading] = useState(false)
-  const [error, setError] = useState(false)
 
   return (
     <div>
-      {!downloading && !error ?
+      {!downloading && !props.error ?
         <div>
           <table>
             <tbody>
@@ -34,7 +35,7 @@ export const VideoResults = (props: VideoResultsProps) => {
                           setDownloading(true)
                           await downloadActions.download(val.id, val.title, val.channelTitle)
                             .then(result => downloadActions.click(result.url))
-                            .catch(() => setError(true))
+                            .catch(() => props.setError(true))
                           setDownloading(false)
                         }}
                       >DL</button>
@@ -50,8 +51,8 @@ export const VideoResults = (props: VideoResultsProps) => {
             </tbody>
           </table>
           <h6>Lists title, channel title, and views • publish date </h6>
-        </div> : downloading && !error ? <h3>Downloading...</h3> : <h3>An error occurred. Please refresh and retry.</h3>
+        </div> : downloading && !props.error ? <h3>Downloading...</h3> : <h3>An error occurred. Please retry.</h3>
       }
-    </div >
+    </div>
   )
 }

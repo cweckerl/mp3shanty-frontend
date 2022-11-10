@@ -5,5 +5,5 @@ export const decode = (input: string): string => {
 }
 
 export const replace = (input: string): string => {
-  return input.replace(/[^\w.()'"\-_ ]/g, ' ')
+  return input.replace(/[^\w,.()'"\-_ ]/g, '')
 }

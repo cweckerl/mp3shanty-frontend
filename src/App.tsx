@@ -10,9 +10,11 @@ export default function App() {
   const [searchType, setSearchType] = useState<string>(SearchType.Video)
   const [videoResults, setVideoResults] = useState<Video[]>([])
   const [playlistResults, setPlaylistResults] = useState<Playlist[]>([])
+  const [error, setError] = useState(false)
   const searchActions = new SearchActions()
 
   const search = () => {
+    setError(false)
     if (searchType === SearchType.Video) {
       searchActions.searchVideo(query).then(res => setVideoResults(res))
     } else if (searchType === SearchType.Playlist) {
@@ -53,9 +55,9 @@ export default function App() {
       </div>
       {
         searchType === SearchType.Video && videoResults.length > 0
-          ? <VideoResults videoResults={videoResults} />
+          ? <VideoResults videoResults={videoResults} error={error} setError={setError} />
           : searchType === SearchType.Playlist && playlistResults.length > 0
-            ? <PlaylistResults playlistResults={playlistResults} />
+            ? <PlaylistResults playlistResults={playlistResults} error={error} setError={setError} />
             : null
       }
       <h6>

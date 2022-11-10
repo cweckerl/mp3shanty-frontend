@@ -11,12 +11,11 @@ describe('decode', () => {
 })
 
 describe('replace', () => {
-  it('should replace non alphanumeric chars and most special chars with a space', () => {
-    // keep .()'"\-_
+  it('should replace non alphanumeric chars and most special chars with an empty string', () => {
     const input = '123_test&foo().*%$,"'
 
     const output = replace(input)
 
-    expect(output).toEqual('123_test foo().    "')
+    expect(output).toEqual('123_testfoo().,"')
   })
 })
