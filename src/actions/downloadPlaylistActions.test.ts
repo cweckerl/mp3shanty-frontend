@@ -8,8 +8,9 @@ describe('DownloadPlaylistActions', () => {
 
   it('should return zip blob', () => {
     const playlistId = 'id'
+    const album = 'album'
 
-    downloadActions.download(playlistId).then(result =>
+    downloadActions.download(playlistId, album).then(result =>
       expect(result).toBeInstanceOf(Blob)
     )
   })

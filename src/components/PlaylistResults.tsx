@@ -33,7 +33,7 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
                         value={val.id}
                         onClick={async () => {
                           setDownloading(true)
-                          await downloadActions.download(val.id)
+                          await downloadActions.download(val.id, val.title)
                             .then(result => downloadActions.click(result, val.title))
                             .catch(() => props.setError(true))
                           setDownloading(false)

@@ -9,7 +9,7 @@ export class DownloadActions {
 
   download = async (videoId: string, title: string, channel: string): Promise<ConversionResult> => {
     try {
-      return this.conversionService.convert(videoId, title, channel)
+      return this.conversionService.convert(videoId, title, channel, '')
     } catch (error) {
       console.log(error)
       throw error
