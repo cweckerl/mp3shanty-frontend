@@ -35,8 +35,8 @@ export default function App() {
           onKeyDown={e => {
             if (e.key === 'Enter') search()
           }}
+          placeholder="Search"
         />
-        <button onClick={search}>Search</button>
         <br />
         <input
           type='radio'
