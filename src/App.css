@@ -24,6 +24,7 @@ p {
 input {
   font-size: 100%;
   height: 15px;
+  margin-bottom: 5px;
 }
 
 html {
