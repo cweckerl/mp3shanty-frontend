@@ -17,7 +17,7 @@ export default function App() {
     setError(false)
     if (searchType === SearchType.Video) {
       searchActions.searchVideo(query).then(res => setVideoResults(res))
-    } else if (searchType === SearchType.Playlist) {
+    } else {
       searchActions.searchPlaylists(query).then(res => setPlaylistResults(res))
     }
   }
