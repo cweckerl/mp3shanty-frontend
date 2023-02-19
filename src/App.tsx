@@ -11,6 +11,7 @@ export default function App() {
   const [videoResults, setVideoResults] = useState<Video[]>([])
   const [playlistResults, setPlaylistResults] = useState<Playlist[]>([])
   const [error, setError] = useState(false)
+  const [settings, setSettings] = useState(false)
   const searchActions = new SearchActions()
 
   const search = () => {
@@ -26,33 +27,25 @@ export default function App() {
     <div>
       <title>mp3shanty</title>
       <h1>mp3shanty💿</h1>
-      <div>
-        <input
-          type='text'
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-          autoCorrect='off'
-          onKeyDown={e => {
-            if (e.key === 'Enter') search()
-          }}
-          placeholder="Search"
-        />
-        <br />
-        <input
-          type='radio'
-          name='filter'
-          value={SearchType.Video}
-          checked={searchType === SearchType.Video}
-          onChange={e => setSearchType(e.target.value)}
-        />Video
-        <input
-          type='radio'
-          name='filter'
-          value={SearchType.Playlist}
-          checked={searchType === SearchType.Playlist}
-          onChange={e => setSearchType(e.target.value)}
-        />Playlist
-      </div>
+      <input
+        type='text'
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+        autoCorrect='off'
+        onKeyDown={e => { if (e.key === 'Enter') search() }}
+        placeholder='Search'
+      />
+      <br />
+      <button onClick={() => setSettings(!settings)}>Filter</button>
+      {
+        settings ? <div>
+          <label htmlFor='searchType'>I want to search for a </label>
+          <select name='searchType' onChange={e => setSearchType(e.target.value)}>
+            <option value={SearchType.Video}>video</option>
+            <option value={SearchType.Playlist}>playlist</option>
+          </select>
+        </div> : null
+      }
       {
         searchType === SearchType.Video && videoResults.length > 0
           ? <VideoResults videoResults={videoResults} error={error} setError={setError} />

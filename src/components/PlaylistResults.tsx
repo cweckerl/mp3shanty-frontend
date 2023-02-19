@@ -23,9 +23,8 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
                   <tr key={val.id}>
                     <td>
                       <img
+                        className='thumbnail'
                         src={val.thumbnail}
-                        width='112'
-                        height='63'
                         alt='thumbnail'
                       />
                       <button
@@ -38,7 +37,7 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
                             .catch(() => props.setError(true))
                           setDownloading(false)
                         }}
-                      >DL</button>
+                      >↓</button>
                     </td>
                     <td>
                       <b>{val.title}</b>
