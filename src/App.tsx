@@ -28,7 +28,7 @@ export default function App() {
       <title>mp3shanty</title>
       <h1>mp3shanty💿</h1>
       <input
-        type='text'
+        type='search'
         value={query}
         onChange={e => setQuery(e.target.value)}
         autoCorrect='off'
@@ -38,13 +38,10 @@ export default function App() {
       <br />
       <button onClick={() => setSettings(!settings)}>Filter</button>
       {
-        settings ? <div>
-          <label htmlFor='searchType'>I want to search for a </label>
-          <select name='searchType' onChange={e => setSearchType(e.target.value)}>
-            <option value={SearchType.Video}>video</option>
-            <option value={SearchType.Playlist}>playlist</option>
-          </select>
-        </div> : null
+        settings ? <select name='searchType' onChange={e => setSearchType(e.target.value)}>
+            <option value={SearchType.Video}>{SearchType.Video}</option>
+            <option value={SearchType.Playlist}>{SearchType.Playlist}</option>
+          </select> : null
       }
       {
         searchType === SearchType.Video && videoResults.length > 0
