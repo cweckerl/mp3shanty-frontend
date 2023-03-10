@@ -1,15 +1,14 @@
 import { ConversionService } from '../services/conversionService'
 import { AWSConversionService } from '../services/awsConversionService'
-import { ConversionResult } from '../models/conversionResults'
 
 export class DownloadActions {
   constructor(
     public readonly conversionService: ConversionService = new AWSConversionService()
   ) { }
 
-  download = async (videoId: string, title: string, channel: string): Promise<ConversionResult> => {
+  download = async (videoId: string): Promise<string> => {
     try {
-      return this.conversionService.convert(videoId, title, channel, '')
+      return this.conversionService.convert(videoId)
     } catch (error) {
       console.log(error)
       throw error

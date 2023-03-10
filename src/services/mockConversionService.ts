@@ -1,10 +1,9 @@
-import { ConversionResult } from '../models/conversionResults'
 import { ConversionService } from './conversionService'
 
 export class MockConversionService implements ConversionService {
-  async convert(videoId: string, title: string, channel: string, album: string): Promise<ConversionResult> {
+  async convert(videoId: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      resolve({ 'url': `https://${videoId}-${title}.com` })
+      resolve(`https://${videoId}.com`)
     })
   }
 }

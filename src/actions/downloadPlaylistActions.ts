@@ -12,15 +12,15 @@ export class DownloadPlaylistActions {
     public readonly proxy: HerokoProxy = new HerokoProxy()
   ) { }
 
-  download = async (playlistId: string, album: string): Promise<Blob> => {
+  download = async (playlistId: string): Promise<Blob> => {
     try {
       const playlistItems = await this.searchService.listPlaylistItems(playlistId)
       const zip = new JSZip()
 
       for (const item of playlistItems) {
         try {
-          const result = await this.conversionService.convert(item.videoId, item.title, item.channelTitle, album)
-          const blob = await this.proxy.zip(result.url)
+          const url = await this.conversionService.convert(item.videoId)
+          const blob = await this.proxy.zip(url)
           zip.file(`${item.title}.mp3`, blob)
         } catch {
           console.log(`Could not download ${item.title}`)
@@ -33,11 +33,10 @@ export class DownloadPlaylistActions {
     }
   }
 
-  click = async (blob: Blob, title: string) => {
+  click = async (blob: Blob) => {
     const a = document.createElement('a')
     const url = window.URL.createObjectURL(blob)
     a.href = url
-    a.download = title
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
