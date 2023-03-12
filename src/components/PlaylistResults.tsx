@@ -33,7 +33,7 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
                         onClick={async () => {
                           setDownloading(true)
                           await downloadActions.download(val.id)
-                            .then(url => downloadActions.click(url))
+                            .then(downloadActions.click)
                             .catch(() => props.setError(true))
                           setDownloading(false)
                         }}
