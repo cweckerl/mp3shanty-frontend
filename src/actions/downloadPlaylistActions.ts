@@ -17,7 +17,7 @@ export class DownloadPlaylistActions {
 
       for (const item of playlistItems) {
         try {
-          const url = 'https://corsproxy.io/?' + encodeURIComponent(await this.conversionService.convert(item.videoId));
+          const url = process.env.REACT_APP_CORS_PROXY + encodeURIComponent(await this.conversionService.convert(item.videoId));
           const blob = await fetch(url).then(r => r.blob())
           zip.file(`${item.videoId}.mp3`, blob)
         } catch {
