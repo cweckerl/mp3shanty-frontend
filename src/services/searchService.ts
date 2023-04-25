@@ -1,4 +1,4 @@
-import { PlaylistItem, SearchResult } from '../models/searchResults'
+import { PlaylistItem, SearchResult } from '../models/types'
 
 export interface SearchService {
   search(query: string, type: string): Promise<SearchResult[]>

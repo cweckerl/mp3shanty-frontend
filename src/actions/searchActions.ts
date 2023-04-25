@@ -1,4 +1,4 @@
-import { Playlist, SearchResult, SearchType, Video } from '../models/searchResults'
+import { Playlist, SearchResult, SearchType, Video } from '../models/types'
 import { SearchService } from '../services/searchService'
 import { YouTubeSearchService } from '../services/youTubeSearchService'
 

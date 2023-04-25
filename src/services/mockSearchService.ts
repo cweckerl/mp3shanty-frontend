@@ -1,4 +1,4 @@
-import { PlaylistItem, SearchResult } from '../models/searchResults'
+import { PlaylistItem, SearchResult } from '../models/types'
 import { SearchService } from './searchService'
 
 export class MockSearchService implements SearchService {

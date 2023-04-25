@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { DownloadActions } from '../actions/downloadVideoActions'
-import { Video } from '../models/searchResults'
+import { Video } from '../models/types'
 
 export interface VideoResultsProps {
   readonly videoResults: Video[]

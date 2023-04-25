@@ -1,4 +1,4 @@
-import { SearchType } from '../models/searchResults'
+import { SearchType } from '../models/types'
 import { MockSearchService } from '../services/mockSearchService'
 import { SearchActions } from './searchActions'
 

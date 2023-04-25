@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { DownloadPlaylistActions } from '../actions/downloadPlaylistActions'
-import { Playlist } from '../models/searchResults'
+import { Playlist } from '../models/types'
 
 export interface PlaylistResultsProps {
   readonly playlistResults: Playlist[]

@@ -4,7 +4,7 @@ import { SearchActions } from './actions/searchActions'
 import { formatQuery } from './actions/util'
 import { PlaylistResults } from './components/PlaylistResults'
 import { VideoResults } from './components/VideoResults'
-import { Playlist, SearchType, Video } from './models/searchResults'
+import { Playlist, SearchType, Video } from './models/types'
 
 export default function App() {
   const [query, setQuery] = useState('')
