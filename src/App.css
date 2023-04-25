@@ -45,3 +45,7 @@ label {
   width: 112px;
   height: 63px;
 }
+
+.alert {
+  color:orangered
+}

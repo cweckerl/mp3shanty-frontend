@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { SearchActions } from './actions/searchActions'
-import { Playlist, SearchType, Video } from './models/searchResults'
-import { VideoResults } from './components/VideoResults'
-import { PlaylistResults } from './components/PlaylistResults'
 import './App.css'
+import { SearchActions } from './actions/searchActions'
+import { formatQuery } from './actions/util'
+import { PlaylistResults } from './components/PlaylistResults'
+import { VideoResults } from './components/VideoResults'
+import { Playlist, SearchType, Video } from './models/searchResults'
 
 export default function App() {
   const [query, setQuery] = useState('')
@@ -13,8 +14,10 @@ export default function App() {
   const [error, setError] = useState(false)
   const [settings, setSettings] = useState(false)
   const searchActions = new SearchActions()
+  const recommendedArtist = process.env.REACT_APP_RECOMMENDED_ARTIST!!
+  const recommendedSong = process.env.REACT_APP_RECOMMENDED_SONG!!
 
-  const search = () => {
+  const search = (query: string) => {
     setError(false)
     if (searchType === SearchType.Video) {
       searchActions.searchVideo(query).then(res => setVideoResults(res))
@@ -32,7 +35,7 @@ export default function App() {
         value={query}
         onChange={e => setQuery(e.target.value)}
         autoCorrect='off'
-        onKeyDown={e => { if (e.key === 'Enter') search() }}
+        onKeyDown={e => { if (e.key === 'Enter') search(query) }}
         placeholder='Search'
       />
       <br />
@@ -43,6 +46,9 @@ export default function App() {
             <option value={SearchType.Playlist}>{SearchType.Playlist}</option>
           </select> : null
       }
+      <button onClick={() => search(formatQuery(recommendedArtist, recommendedSong)) }>
+        <span className='alert'>(new!)</span> Song of the week
+      </button>
       {
         searchType === SearchType.Video && videoResults.length > 0
           ? <VideoResults videoResults={videoResults} error={error} setError={setError} />
