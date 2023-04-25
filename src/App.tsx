@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import './App.css'
 import { SearchActions } from './actions/searchActions'
-import { formatQuery } from './actions/util'
+import { recommendationToVideo } from './actions/util'
 import { PlaylistResults } from './components/PlaylistResults'
+import { Recommendation } from './components/Recommendation'
 import { VideoResults } from './components/VideoResults'
 import { Playlist, SearchType, Video } from './models/types'
 
@@ -14,8 +15,11 @@ export default function App() {
   const [error, setError] = useState(false)
   const [settings, setSettings] = useState(false)
   const searchActions = new SearchActions()
-  const recommendedArtist = process.env.REACT_APP_RECOMMENDED_ARTIST!!
-  const recommendedSong = process.env.REACT_APP_RECOMMENDED_SONG!!
+  const recommendation = {
+    id: process.env.REACT_APP_RECOMMENDED_ID!!,
+    title: process.env.REACT_APP_RECOMMENDED_TITLE!!,
+    channelTitle: process.env.REACT_APP_RECOMMENDED_CHANNEL_TITLE!!
+  }
 
   const search = (query: string) => {
     setError(false)
@@ -46,15 +50,12 @@ export default function App() {
             <option value={SearchType.Playlist}>{SearchType.Playlist}</option>
           </select> : null
       }
-      <button onClick={() => search(formatQuery(recommendedArtist, recommendedSong)) }>
-        <span className='alert'>(new!)</span> Song of the week
-      </button>
       {
         searchType === SearchType.Video && videoResults.length > 0
           ? <VideoResults videoResults={videoResults} error={error} setError={setError} />
           : searchType === SearchType.Playlist && playlistResults.length > 0
             ? <PlaylistResults playlistResults={playlistResults} error={error} setError={setError} />
-            : null
+            : <Recommendation video={recommendationToVideo(recommendation)} error={error} setError={setError}/>
       }
       <h6>
         <a

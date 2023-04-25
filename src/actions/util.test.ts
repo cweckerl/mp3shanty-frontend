@@ -1,4 +1,4 @@
-import { decode, formatQuery } from "./util"
+import { decode, recommendationToVideo} from "./util"
 
 describe('decode', () => {
   it('should remove html entities from string', () => {
@@ -10,13 +10,26 @@ describe('decode', () => {
   })
 })
 
-describe('formatQuery', () => {
-  it('should join song and artist', () => {
-    const artist = 'Michael Jackson'
-    const song = 'Thriller'
 
-    const output = formatQuery(artist, song)
+describe('recommendationToVideo', () => {
+  it('should map recommendation to video type', () => {
+    const recommendation = {
+      id: 'id',
+      title: 'title',
+      channelTitle: 'channelTitle'
+    }
+    const expected = {
+      id: 'id',
+      title: 'title',
+      channelTitle: 'channelTitle',
+      publishDate: '',
+      thumbnail: `https://i.ytimg.com/vi/id/mqdefault.jpg`,
+      viewCount: '',
+      duration: ''
+    }
 
-    expect(output).toEqual('Thriller by Michael Jackson')
+    const output = recommendationToVideo(recommendation)
+
+    expect(output).toEqual(expected)
   })
 })

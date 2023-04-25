@@ -26,3 +26,9 @@ export enum SearchType {
   Playlist = 'playlist',
   Video = 'video'
 }
+
+export interface Recommendation {
+  readonly id: string,
+  readonly title: string,
+  readonly channelTitle: string
+}

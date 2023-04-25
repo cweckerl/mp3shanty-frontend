@@ -27,7 +27,6 @@ export class YouTubeSearchService implements SearchService {
       axios.get(`https://www.googleapis.com/youtube/v3/videos?part=contentDetails,statistics&id=${videoId}&key=${key}`)
         .then(res => {
           const item = res.data.items[0]
-          console.log(item)
           resolve([item.statistics.viewCount, item.contentDetails.duration])
         })
         .catch(err => reject(err))

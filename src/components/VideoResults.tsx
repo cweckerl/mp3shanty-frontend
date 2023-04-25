@@ -19,20 +19,20 @@ export const VideoResults = (props: VideoResultsProps) => {
           <table>
             <tbody>
               {
-                props.videoResults.map((val) => (
-                  <tr key={val.id}>
+                props.videoResults.map((video) => (
+                  <tr key={video.id}>
                     <td>
                       <img
                         className='thumbnail'
-                        src={val.thumbnail}
+                        src={video.thumbnail}
                         alt='thumbnail'
                       />
                       <button
                         style={{ margin: 'auto', display: 'block' }}
-                        value={val.id}
+                        value={video.id}
                         onClick={async () => {
                           setDownloading(true)
-                          await downloadActions.download(val.id)
+                          await downloadActions.download(video.id)
                             .then(downloadActions.click)
                             .catch(() => props.setError(true))
                           setDownloading(false)
@@ -40,9 +40,9 @@ export const VideoResults = (props: VideoResultsProps) => {
                       >↓</button>
                     </td>
                     <td>
-                      <b>{val.title}</b>
-                      <p>{val.channelTitle}</p>
-                      <p>{Number(val.viewCount).toLocaleString()} • {new Date(val.publishDate).toLocaleDateString()}</p>
+                      <b>{video.title}</b>
+                      <p>{video.channelTitle}</p>
+                      <p>{Number(video.viewCount).toLocaleString()} • {new Date(video.publishDate).toLocaleDateString()}</p>
                     </td>
                   </tr>
                 ))

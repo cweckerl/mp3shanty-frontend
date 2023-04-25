@@ -19,20 +19,20 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
           <table>
             <tbody>
               {
-                props.playlistResults.map((val) => (
-                  <tr key={val.id}>
+                props.playlistResults.map((playlist) => (
+                  <tr key={playlist.id}>
                     <td>
                       <img
                         className='thumbnail'
-                        src={val.thumbnail}
+                        src={playlist.thumbnail}
                         alt='thumbnail'
                       />
                       <button
                         style={{ margin: 'auto', display: 'block' }}
-                        value={val.id}
+                        value={playlist.id}
                         onClick={async () => {
                           setDownloading(true)
-                          await downloadActions.download(val.id)
+                          await downloadActions.download(playlist.id)
                             .then(downloadActions.click)
                             .catch(() => props.setError(true))
                           setDownloading(false)
@@ -40,9 +40,9 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
                       >↓</button>
                     </td>
                     <td>
-                      <b>{val.title}</b>
-                      <p>{val.channelTitle}</p>
-                      <p>{Number(val.itemCount).toLocaleString()} • {new Date(val.publishDate).toLocaleDateString()}</p>
+                      <b>{playlist.title}</b>
+                      <p>{playlist.channelTitle}</p>
+                      <p>{Number(playlist.itemCount).toLocaleString()} • {new Date(playlist.publishDate).toLocaleDateString()}</p>
                     </td>
                   </tr>
                 ))
