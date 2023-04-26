@@ -26,6 +26,7 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
                         className='thumbnail'
                         src={playlist.thumbnail}
                         alt='thumbnail'
+                        draggable='false'
                       />
                       <button
                         style={{ margin: 'auto', display: 'block' }}
@@ -49,7 +50,6 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
               }
             </tbody>
           </table>
-          <h6>Lists title, channel title, and video count • publish date.</h6>
         </div> : downloading && !props.error ? <h3>Downloading...</h3> : <h3>An error occurred. Please retry.</h3>}
     </div>
   )
