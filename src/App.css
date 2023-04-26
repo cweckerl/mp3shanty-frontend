@@ -36,16 +36,28 @@ button {
   cursor: pointer;
 }
 
-label {
-  font-size: small;
-}
-
 .thumbnail {
   border-radius: 8px;
   width: 112px;
   height: 63px;
 }
 
-.alert {
-  color:orangered
+h6 {
+  display: inline;
+  font-style: italic;
+}
+
+h5 {
+  display: inline;
+  color: rgb(235, 215, 255);
+}
+
+.section {
+  text-align: left;
+  margin-left: 30px;
+}
+
+.subsection {
+  text-align: center;
+  padding-left: 10px;
 }

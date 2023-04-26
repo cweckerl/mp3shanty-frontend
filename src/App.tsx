@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './App.css'
 import { SearchActions } from './actions/searchActions'
 import { recommendationToVideo } from './actions/util'
+import { Footer } from './components/Footer'
 import { PlaylistResults } from './components/PlaylistResults'
-import { Recommendation } from './components/Recommendation'
 import { VideoResults } from './components/VideoResults'
 import { Playlist, SearchType, Video } from './models/types'
 
@@ -55,16 +55,8 @@ export default function App() {
           ? <VideoResults videoResults={videoResults} error={error} setError={setError} />
           : searchType === SearchType.Playlist && playlistResults.length > 0
             ? <PlaylistResults playlistResults={playlistResults} error={error} setError={setError} />
-            : <Recommendation video={recommendationToVideo(recommendation)} error={error} setError={setError}/>
+            : <Footer video={recommendationToVideo(recommendation)} error={error} setError={setError}/>
       }
-      <h6>
-        <a
-          target='_blank'
-          rel='noopener noreferrer'
-          href="https://github.com/cweckerl/mp3shanty-frontend/blob/master/README.md"
-        >How do I use this?</a>
-      </h6>
-      <h6>Not for commercial use. Downloading copyrighted work is prohibited.</h6>
     </div>
   )
 }
