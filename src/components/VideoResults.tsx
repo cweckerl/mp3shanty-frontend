@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { DownloadActions } from '../actions/downloadVideoActions'
 import { Video } from '../models/types'
+import { DownloadWheel } from './DownloadWheel'
 
 export interface VideoResultsProps {
   readonly videoResults: Video[]
@@ -50,7 +51,7 @@ export const VideoResults = (props: VideoResultsProps) => {
               }
             </tbody>
           </table>
-        </div> : downloading && !props.error ? <h3>Downloading...</h3> : <h3>An error occurred. Please retry.</h3>
+        </div> : downloading && !props.error ? <DownloadWheel /> : <h3>An error occurred. Please retry.</h3>
       }
     </div>
   )

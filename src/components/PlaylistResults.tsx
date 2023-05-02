@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { DownloadPlaylistActions } from '../actions/downloadPlaylistActions'
 import { Playlist } from '../models/types'
+import { DownloadWheel } from './DownloadWheel'
 
 export interface PlaylistResultsProps {
   readonly playlistResults: Playlist[]
@@ -50,7 +51,7 @@ export const PlaylistResults = (props: PlaylistResultsProps) => {
               }
             </tbody>
           </table>
-        </div> : downloading && !props.error ? <h3>Downloading...</h3> : <h3>An error occurred. Please retry.</h3>}
+        </div> : downloading && !props.error ? <DownloadWheel /> : <h3>An error occurred. Please retry.</h3>}
     </div>
   )
 }
