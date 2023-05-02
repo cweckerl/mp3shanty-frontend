@@ -32,12 +32,14 @@ export const Footer = (props: FooterProps) => {
             <div className='section'>
               <h5>Disclaimer</h5>
               <br />
+              <h6 className='subsection'>Optimized for mobile display.</h6>
+              <br />
               <h6 className='subsection'>Not for commercial use.</h6>
               <br />
               <h6 className='subsection'>Downloading copyrighted work is prohibited.</h6>
             </div>
             <div className='section'>
-              <h5>Recommendation (Apr. 25)</h5>
+              <h5>Recommendation</h5>
               <br />
               <h6 className='subsection'>{props.video.title} by {props.video.channelTitle}</h6>
                 <button
