@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
 import { SearchActions } from './actions/searchActions'
-import { recommendationToVideo } from './actions/util'
 import { Footer } from './components/Footer'
 import { PlaylistResults } from './components/PlaylistResults'
 import { VideoResults } from './components/VideoResults'
@@ -15,11 +14,6 @@ export default function App() {
   const [error, setError] = useState(false)
   const [settings, setSettings] = useState(false)
   const searchActions = new SearchActions()
-  const recommendation = {
-    id: process.env.REACT_APP_RECOMMENDED_ID!!,
-    title: process.env.REACT_APP_RECOMMENDED_TITLE!!,
-    channelTitle: process.env.REACT_APP_RECOMMENDED_CHANNEL_TITLE!!
-  }
 
   const search = (query: string) => {
     setError(false)
@@ -55,7 +49,7 @@ export default function App() {
           ? <VideoResults videoResults={videoResults} error={error} setError={setError} />
           : searchType === SearchType.Playlist && playlistResults.length > 0
             ? <PlaylistResults playlistResults={playlistResults} error={error} setError={setError} />
-            : <Footer video={recommendationToVideo(recommendation)} error={error} setError={setError}/>
+            : <Footer/>
       }
     </div>
   )
