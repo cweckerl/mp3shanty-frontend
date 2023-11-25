@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/mp3shanty-frontend/static/css/main.35969f03.css",
-    "main.js": "/mp3shanty-frontend/static/js/main.426babb4.js",
+    "main.css": "/mp3shanty-frontend/static/css/main.51ab9900.css",
+    "main.js": "/mp3shanty-frontend/static/js/main.ee8b8627.js",
     "index.html": "/mp3shanty-frontend/index.html",
-    "main.35969f03.css.map": "/mp3shanty-frontend/static/css/main.35969f03.css.map",
-    "main.426babb4.js.map": "/mp3shanty-frontend/static/js/main.426babb4.js.map"
+    "main.51ab9900.css.map": "/mp3shanty-frontend/static/css/main.51ab9900.css.map",
+    "main.ee8b8627.js.map": "/mp3shanty-frontend/static/js/main.ee8b8627.js.map"
   },
   "entrypoints": [
-    "static/css/main.35969f03.css",
-    "static/js/main.426babb4.js"
+    "static/css/main.51ab9900.css",
+    "static/js/main.ee8b8627.js"
   ]
 }
