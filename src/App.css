@@ -58,10 +58,16 @@ h5 {
 
 .subsection {
   text-align: center;
-  padding-left: 10px;
 }
 
 .download-wheel {
   padding-top: 50px;
   height: 25px;
+}
+
+.password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
